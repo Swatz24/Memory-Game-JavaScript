@@ -127,6 +127,7 @@ const restart = () => {
   let faces = document.querySelectorAll(".face");
   let cards = document.querySelectorAll(".grid");
   section.style.pointerEvents = "none";
+  playerMoves = 0;
   winStatus.innerHTML = "";
   movesElm.innerHTML = "";
   seconds = 0;
