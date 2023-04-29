@@ -6,6 +6,7 @@ let playerMoves = 0;
 const movesElm = document.querySelector(".js-moves");
 const secElm = document.querySelector(".js-sec");
 const minElm = document.querySelector(".js-min");
+const restartElm = document.querySelector(".js-restart");
 
 let startTime;
 //Generate Cards
