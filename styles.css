@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+p {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(6, 5rem);
+  grid-template-rows: repeat(5, 5rem);
+  grid-gap: 1rem;
+  perspective: 400px;
+}
+
+.grid {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+.face,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+}
+
+.back {
+  background-color: rgb(247, 200, 200);
+  backface-visibility: hidden;
+}
+
+.toggleCard {
+  transform: rotateY(180deg);
+}
+
+.face {
+  transform: rotateY(180deg);
+}
