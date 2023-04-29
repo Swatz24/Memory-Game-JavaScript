@@ -7,8 +7,9 @@ const movesElm = document.querySelector(".js-moves");
 const secElm = document.querySelector(".js-sec");
 const minElm = document.querySelector(".js-min");
 const restartElm = document.querySelector(".js-restart");
-
+let isHaveWinner = "false";
 let startTime;
+let firstButtonClick = "false";
 //Generate Cards
 const getImage = [
   { imgSrc: "./Images/candle.png", name: "Candle" },
@@ -76,6 +77,7 @@ const GridGenerator = () => {
     // Event Listener to toggle cards
     grid.addEventListener("click", (e) => {
       // Check if this is the first card clicked
+      firstButtonClick = "true";
       if (!startTime) {
         startTime = Date.now(); // Store the start time
         setInterval(startTimer, 1000); // Update the timer every second
@@ -116,8 +118,10 @@ const checkCards = (e) => {
   }
   //Check winning
   if (toggleCard.length === 30) {
-    winStatus.innerHTML = "Congrats! You Won!";
-    restart();
+    setTimeout(() => {
+      winStatus.innerHTML = "Congrats! You Won!";
+    }, 1000);
+    isHaveWinner = "true";
   }
 };
 
@@ -146,30 +150,34 @@ const restart = () => {
       section.style.pointerEvents = "all";
     }, 1000);
   });
+  isHaveWinner = "false";
+  firstButtonClick = "false";
 };
 
 // Function to update the timer with elapsed time
 let seconds = 0;
 let minutes = 0;
 const startTimer = () => {
-  seconds++;
-  if (seconds <= 9) {
-    secElm.innerHTML = `Seconds: ${seconds} `;
-  }
+  if (isHaveWinner === "false" && firstButtonClick == "true") {
+    seconds++;
+    if (seconds <= 9) {
+      secElm.innerHTML = `Seconds: ${seconds} `;
+    }
 
-  if (seconds > 9) {
-    secElm.innerHTML = `Seconds: ${seconds}`;
-  }
+    if (seconds > 9) {
+      secElm.innerHTML = `Seconds: ${seconds}`;
+    }
 
-  if (seconds > 59) {
-    minutes++;
-    minElm.innerHTML = `Minutes: ${minutes}`;
-    seconds = 0;
-    secElm.innerHTML = `Seconds: ${seconds} `;
-  }
+    if (seconds > 59) {
+      minutes++;
+      minElm.innerHTML = `Minutes: ${minutes}`;
+      seconds = 0;
+      secElm.innerHTML = `Seconds: ${seconds} `;
+    }
 
-  if (minutes > 9) {
-    minElm.innerHTML = `Minutes: ${minutes}`;
+    if (minutes > 9) {
+      minElm.innerHTML = `Minutes: ${minutes}`;
+    }
   }
 };
 
